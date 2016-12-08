@@ -20,7 +20,7 @@ class Notop_Category_Checklist extends Walker_Category_Checklist{
 
         $class = in_array( $category->term_id, $popular_cats ) ? ' class="popular-category"' : '';
 
-		if( $category->parent == 0 && $this->category_has_children( $category->term_id ) ) {
+		if( $category->parent == 0 && $this->category_has_children( $category->term_id, $taxonomy ) ) {
             $output .= "\n<li id='{$taxonomy}-{$category->term_id}'$class>" . esc_html( apply_filters( 'the_category', $category->name ) ) ;
         } else {
             /** This filter is documented in wp-includes/category-template.php */
