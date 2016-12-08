@@ -83,16 +83,19 @@ class adjust_admin_categories {
                             $args['checked_ontop'] = false;
                         }
 
+                        $walker = new Complex_Category_Checklist();
+
                         //カテゴリーをラジオボタンにする
                         if ( $this->aac_options[$key][$key2]['change_radiolist'] == true ) {
-                            $args['walker'] = new Radio_Category_Checklist();
+                            $walker->push(new Radio_Category_Checklist());
                         }
 
                         //親カテゴリーを選択できなくする
                         if ( $this->aac_options[$key][$key2]['checklist_no_top'] == true ) {
                             $args['checked_ontop'] = false;
-                            $args['walker'] = new Notop_Category_Checklist();
+                            $walker->push(new Notop_Category_Checklist());
                         }
+                        $args['walker'] = $walker;
 
                         return $args;
                      }
