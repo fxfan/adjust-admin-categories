@@ -30,7 +30,7 @@ class Adjust_Admin_Category_Checklist extends Walker_Category_Checklist {
 class Notop_Category_Checklist extends Adjust_Admin_Category_Checklist {
 	
 	function category_has_children( $term_id = 0, $taxonomy = 'category' ) {
-		$children = get_categories( array( 'child_of' => $term_id, 'taxonomy' => $taxonomy ) );
+        $children = get_categories( array( 'child_of' => $term_id, 'taxonomy' => $taxonomy, 'hide_empty' => false ) );
 		return ( $children );
 	}
 
