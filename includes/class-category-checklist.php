@@ -19,7 +19,7 @@ class Adjust_Admin_Category_Checklist extends Walker_Category_Checklist {
 
         $current_output = "\n<li id='{$taxonomy}-{$category->term_id}'$class>" . '<label class="selectit"><input value="' . $category->term_id . '" type="checkbox" name="'.$name.'[]" id="in-'.$taxonomy.'-' . $category->term_id . '"' . checked( in_array( $category->term_id, $selected_cats ), true, false ) . disabled( empty( $args['disabled'] ), false, false ) . ' /> ' . esc_html( apply_filters( 'the_category', $category->name ) ) . '</label>';
 
-        $output .= $this->filter_output( $current_output, $category, $taxonomy, $li_class, $name );
+        $output .= $this->filter_output( $current_output, $category, $taxonomy, $class, $name );
     }
 
     function filter_output( $output, $category, $taxonomy, $li_class, $input_name ) {
@@ -36,7 +36,7 @@ class Notop_Category_Checklist extends Adjust_Admin_Category_Checklist {
 
     function filter_output( $output, $category, $taxonomy, $li_class, $input_name ) {
 		if( $category->parent == 0 && $this->category_has_children( $category->term_id, $taxonomy ) ) {
-            return "\n<li id='{$taxonomy}-{$category->term_id}'$class>" . esc_html( apply_filters( 'the_category', $category->name ) ) ;
+            return "\n<li id='{$taxonomy}-{$category->term_id}'$li_class>" . esc_html( apply_filters( 'the_category', $category->name ) ) ;
         }
         return $output;
     }
